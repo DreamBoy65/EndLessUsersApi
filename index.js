@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv").config()
 const morgan = require("morgan");
 const colors = require("colors");
+const cors = require("cors")
 const { NoPage, Error, Check } = require("./handler");
 const { index, users } = require("./routes/_main");
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.use(Check);
+app.use(cors())
 app.get("/", index);
 app.get("/users", users);
 app.use(Error);
